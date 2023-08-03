@@ -1,4 +1,5 @@
 #include "game.h"
+#include "textureManager.h"
 
 
 SDL_Texture* playerTexture;
@@ -36,9 +37,10 @@ void game::init(const char *title, int xpos, int ypos, int width, int height, bo
 		isRunning = false;
 	}
 
-	SDL_Surface* tmp = IMG_Load("assets/xd.png");
-	playerTexture = SDL_CreateTextureFromSurface(renderer, tmp);
-	SDL_FreeSurface(tmp);
+	
+	playerTexture = textureManager::LoadTexture("assets/xd.png", renderer);
+	
+
 }
 
 void game::handleEvents() {

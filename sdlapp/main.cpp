@@ -7,7 +7,7 @@ game* gamee = nullptr;
 int main(int argc,char *argv[]) {
 
 
-	const int FPS = 10;
+	const int FPS = 100;
 	const int frameDelay = 1000 / FPS;
 
 	Uint32 frameStart;
