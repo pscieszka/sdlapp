@@ -38,7 +38,7 @@ void game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 	
 	
-	player = new gameObject("assets/xd.png", renderer);
+	player = new gameObject("assets/xd.png", renderer,0,0);
 	
 
 }
