@@ -3,7 +3,7 @@
 class gameObject
 {
 public:
-	gameObject(const char* texturesheet, SDL_Renderer* ren,int x,int y);
+	gameObject(const char* texturesheet,int x,int y);
 	~gameObject();
 		
 	void update();
@@ -14,7 +14,7 @@ private:
 
 	SDL_Texture* objTexture;
 	SDL_Rect srcRect, destRect;
-	SDL_Renderer* renderer;
+	
 
 
 };

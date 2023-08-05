@@ -4,6 +4,9 @@
 
 
 gameObject* player;
+
+SDL_Renderer* game::renderer = nullptr;
+
 game::game() {
 
 }
@@ -38,7 +41,7 @@ void game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 	
 	
-	player = new gameObject("assets/xd.png", renderer,0,0);
+	player = new gameObject("assets/xd.png",0,0);
 	
 
 }
