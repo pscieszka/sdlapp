@@ -30,7 +30,7 @@
     <ClCompile Include="map.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="ECS.cpp">
+    <ClCompile Include="Components.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
@@ -49,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="ECS.h">
       <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Components.h">
+      <Filter>Pliki źródłowe</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

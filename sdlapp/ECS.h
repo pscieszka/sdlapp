@@ -19,7 +19,7 @@ inline ComponentID getComponentTypeID() {
 
 template <typename T> inline ComponentID getComponentTypeID()noexcept {
 	static ComponentID typeID = getComponentTypeID();
-	return typeID();
+	return typeID;
 }
 
 constexpr std::size_t maxComponents = 32;
@@ -29,7 +29,7 @@ using ComponentArray = std::array<Component*, maxComponents>;
 
 class Component {
 public:
-	Entity* enitity;
+	Entity* entity;
 
 	virtual void init(){}
 	virtual void update (){}
@@ -56,7 +56,7 @@ public:
 	void destroy() { active = false; }
 
 	template <typename T> bool hasComponent() const {
-		return componentBitSet[getComponentID<T>];
+		return componentBitSet[getComponentTypeID<T>];
 	}
 
 	template <typename T,typename... TArgs>
@@ -65,7 +65,52 @@ public:
 		c->entity = this;
 		std::unique_ptr<Component> uPtr{ c };
 		components.emplace_back(std::move(uPtr));
+	
+
+		componentArray[getComponentTypeID<T>()] = c;
+		componentBitSet[getComponentTypeID<T>()] = true;
+
+		c->init();
+		return *c;
+	}
+	
+	template<typename T> T& getComponent() const {
+		auto ptr(componentArray[getComponentTypeID<T>()]);
+		return *static_cast<T*>(ptr);
+	}
+	
+};
+
+class Manager {
+private:
+	std::vector<std::unique_ptr<Entity>> entities;
+
+public:
+	void update() {
+		for (auto& e : entities) {
+			e->update();
+
+		}
 	}
 
+	void draw() {
+		for (auto& e : entities) {
+			e->draw();
+		}
+	}
 
+	void refresh() {
+		entities.erase(std::remove_if(std::begin(entities), std::end(entities),
+			[](const std::unique_ptr<Entity>& mEntity) {
+				return !mEntity->isActive();
+			}),
+			std::end(entities));
+	}
+
+	Entity& addEntity() {
+		Entity* e = new Entity();
+		std::unique_ptr<Entity> uPtr{e};
+		entities.emplace_back(std::move(uPtr));
+		return *e;
+	}
 };
