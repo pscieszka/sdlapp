@@ -1,17 +1,15 @@
 #include "game.h"
 #include "textureManager.h"
-#include "gameObject.h"
 #include "map.h"
-#include "ECS.h"
 #include "Components.h"
 
-gameObject* player;
+
 map* mapp;
 SDL_Renderer* game::renderer = nullptr;
 
 
 Manager manager;
-auto& newPlayer(manager.addEntity());
+auto& player(manager.addEntity());
 
 
 game::game() {
@@ -48,11 +46,11 @@ void game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 	
 	
-	player = new gameObject("assets/xd.png",0,0);
+	
 	mapp = new map();
 
-	newPlayer.addComponent<PositionComponent>();
-	newPlayer.getComponent<PositionComponent>().setPosition(100,100);
+	player.addComponent<PositionComponent>(400,400);
+	player.addComponent<SpriteComponent>("assets/xd.png");
 
 	
 
@@ -72,17 +70,21 @@ void game::handleEvents() {
 }
 
 void game::update() {
-	player->update();
-
+	
+	manager.refresh();
 	manager.update();
-	std::cout << newPlayer.getComponent<PositionComponent>().x() << ", " << newPlayer.getComponent<PositionComponent>().y() << std::endl;
+
+	if (player.getComponent<PositionComponent>().x() >500) {
+		player.getComponent<SpriteComponent>().setTex("assets/dirt.png");
+	}
 
 }
 
 void game::render() {
 	SDL_RenderClear(renderer);
 	mapp->drawMap();
-	player->render();
+
+	manager.draw();
 	SDL_RenderPresent(renderer);
 }
 
