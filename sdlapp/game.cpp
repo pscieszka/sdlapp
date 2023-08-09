@@ -2,6 +2,7 @@
 #include "textureManager.h"
 #include "map.h"
 #include "Components.h"
+#include "Vector2D.h"
 
 
 map* mapp;
@@ -49,7 +50,7 @@ void game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	
 	mapp = new map();
 
-	player.addComponent<PositionComponent>(400,400);
+	player.addComponent<TransformComponent>(400,400);
 	player.addComponent<SpriteComponent>("assets/xd.png");
 
 	
@@ -73,8 +74,8 @@ void game::update() {
 	
 	manager.refresh();
 	manager.update();
-
-	if (player.getComponent<PositionComponent>().x() >500) {
+	player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
+	if (player.getComponent<TransformComponent>().position.x >500) {
 		player.getComponent<SpriteComponent>().setTex("assets/dirt.png");
 	}
 

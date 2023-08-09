@@ -30,6 +30,9 @@
     <ClCompile Include="map.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -50,11 +53,14 @@
     <ClInclude Include="ECS.h">
       <Filter>Pliki źródłowe\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="PositionComponent.h">
+    <ClInclude Include="TransformComponent.h">
       <Filter>Pliki źródłowe\ECS</Filter>
     </ClInclude>
     <ClInclude Include="SpriteComponent.h">
       <Filter>Pliki źródłowe\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Pliki źródłowe</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
