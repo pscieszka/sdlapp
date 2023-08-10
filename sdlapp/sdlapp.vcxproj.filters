@@ -62,5 +62,8 @@
     <ClInclude Include="Vector2D.h">
       <Filter>Pliki źródłowe</Filter>
     </ClInclude>
+    <ClInclude Include="KeyboardController.h">
+      <Filter>Pliki źródłowe\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

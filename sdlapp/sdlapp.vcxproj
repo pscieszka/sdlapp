@@ -152,6 +152,7 @@
     <ClInclude Include="ECS.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameObject.h" />
+    <ClInclude Include="KeyboardController.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="SpriteComponent.h" />

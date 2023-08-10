@@ -7,7 +7,7 @@
 
 map* mapp;
 SDL_Renderer* game::renderer = nullptr;
-
+SDL_Event game::event;
 
 Manager manager;
 auto& player(manager.addEntity());
@@ -52,13 +52,16 @@ void game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 	player.addComponent<TransformComponent>(400,400);
 	player.addComponent<SpriteComponent>("assets/xd.png");
+	player.addComponent<KeyboardController>();
+	
 
 	
 
 }
 
 void game::handleEvents() {
-	SDL_Event event;
+	
+
 	SDL_PollEvent(&event);
 	switch (event.type) {
 	case SDL_QUIT:
@@ -74,11 +77,7 @@ void game::update() {
 	
 	manager.refresh();
 	manager.update();
-	player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
-	if (player.getComponent<TransformComponent>().position.x >500) {
-		player.getComponent<SpriteComponent>().setTex("assets/dirt.png");
-	}
-
+	
 }
 
 void game::render() {
