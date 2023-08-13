@@ -15,9 +15,10 @@ public:
 		tag = t;
 	}
 	void init() override {
-		if (!entity->hasComponent<TransformComponent>()) {
-			entity->addComponent<TransformComponent>();
-		}
+		//nw czemu to nie dziala
+		//if (!entity->hasComponent<TransformComponent>()) {
+		//	entity->addComponent<TransformComponent>();
+		//}
 		transform = &entity->getComponent<TransformComponent>();
 	}
 	

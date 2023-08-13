@@ -6,6 +6,7 @@
 #include "Collision.h"
 
 
+
 map* mapp;
 SDL_Renderer* game::renderer = nullptr;
 SDL_Event game::event;
@@ -82,11 +83,16 @@ void game::handleEvents() {
 void game::update() {
 	
 	manager.refresh();
+
 	manager.update();
 
 	if (Collision::AABB(player.getComponent<ColliderComponent>().collider, wall.getComponent<ColliderComponent>().collider)) {
+		player.getComponent<TransformComponent>().velocity * -1;
+		
 		std::cout << " wall hit" << std::endl;
 	}
+	
+	
 
 	
 }
