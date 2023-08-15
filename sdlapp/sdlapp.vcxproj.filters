@@ -74,5 +74,8 @@
     <ClInclude Include="Collision.h">
       <Filter>Pliki źródłowe\ECS</Filter>
     </ClInclude>
+    <ClInclude Include="TileComponent.h">
+      <Filter>Pliki źródłowe\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
