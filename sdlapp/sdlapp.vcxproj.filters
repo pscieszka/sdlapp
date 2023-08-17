@@ -36,6 +36,9 @@
     <ClCompile Include="Collision.cpp">
       <Filter>Pliki źródłowe\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="ECS.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
