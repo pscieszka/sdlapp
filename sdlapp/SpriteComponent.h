@@ -3,6 +3,8 @@
 #include "Components.h"
 #include"textureManager.h"
 #include "SDL.h"
+#include "Animation.h"
+#include <map>
 
 class SpriteComponent : public Component
 {
@@ -16,14 +18,25 @@ private:
 	int speed = 100;
 
 public:
+
+	int animIndex = 0;
+
+	std::map<const char*, Animation> animations;
+
 	SpriteComponent() = default;
 	SpriteComponent(const char* path) {
 		setTex(path);
 	}
-	SpriteComponent(const char* path,int nFrames, int mSpeed) {
-		animated = true;
-		frames = nFrames;
-		speed = mSpeed;
+	SpriteComponent(const char* path,bool isAnimated) {
+		animated = isAnimated;
+
+		Animation idle = Animation(0, 10, 100);
+		Animation walk = Animation(1, 10, 100);
+
+		animations.emplace("idle", idle);
+		animations.emplace("walk", walk);
+		Play("idle");
+		
 		setTex(path);
 	}
 	void setTex(const char* path) {
@@ -38,6 +51,9 @@ public:
 		transform = &entity->getComponent<TransformComponent>();
 		
 		//bug z renderem to trzeba zmienic valuesy
+
+		srcRect.y = animIndex * transform->height;
+
 		srcRect.x = srcRect.y = 0;
 		srcRect.w = transform->width;
 		srcRect.h = transform->height;
@@ -56,5 +72,11 @@ public:
 	}
 	void draw() override {
 		textureManager::draw(texture, srcRect, destRect);
+	}
+
+	void Play(const char* animName) {
+		frames = animations[animName].frames;
+		animIndex = animations[animName].index;
+		speed = animations[animName].speed;
 	}
 };
