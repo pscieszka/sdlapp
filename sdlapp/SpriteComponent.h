@@ -30,8 +30,8 @@ public:
 	SpriteComponent(const char* path,bool isAnimated) {
 		animated = isAnimated;
 
-		Animation idle = Animation(0, 10, 100);
-		Animation walk = Animation(1, 10, 100);
+		Animation idle = Animation(3, 5, 100);
+		Animation walk = Animation(1, 2, 100);
 
 		animations.emplace("idle", idle);
 		animations.emplace("walk", walk);
