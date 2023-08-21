@@ -36,6 +36,8 @@ public:
 				sprite->Play("walk");
 
 				break;
+			case SDLK_ESCAPE:
+				game::isRunning = false;
 
 				default:
 					break;
