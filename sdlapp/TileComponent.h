@@ -17,11 +17,11 @@ public:
 
 		srcRect.x = srcX;
 		srcRect.y = srcY;
-		srcRect.w = srcRect.h = 64;
+		srcRect.w = srcRect.h = 32;
 
 		destRect.x = xpos;
 		destRect.y = ypos;
-		destRect.w = destRect.h = 64;
+		destRect.w = destRect.h = 32;
 
 
 

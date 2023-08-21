@@ -64,7 +64,7 @@ void game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	mapp = new map();
 
 	map::loadMap("assets/map.txt", 32, 32);
-	player.addComponent<TransformComponent>(5);
+	player.addComponent<TransformComponent>(2);
 	player.addComponent<SpriteComponent>("assets/test2.png",true);
 	player.addComponent<KeyboardController>();
 	player.addComponent<ColliderComponent>("player");
