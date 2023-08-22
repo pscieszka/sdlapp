@@ -14,6 +14,10 @@ SDL_Event game::event;
 std::vector<ColliderComponent*> game::colliders;
 
 Manager manager;
+
+SDL_Rect game::camera = { 0,0,1200,720 };
+
+
 auto& player(manager.addEntity());
 auto& wall(manager.addEntity());
 const char* mapfile = "assets/terrain_ss.png";
@@ -26,6 +30,7 @@ enum groupLabels : std::size_t {
 	groupColliders
 };
 bool game::isRunning = false;
+
 auto& tiles(manager.getGroup(groupMap));
 auto& players(manager.getGroup(groupPlayers));
 auto& enemies(manager.getGroup(groupEnemies));
@@ -99,12 +104,20 @@ void game::update() {
 
 	manager.update();
 
-	Vector2D pVel = player.getComponent<TransformComponent>().velocity;
-	int pSpeed = player.getComponent<TransformComponent>().speed;
-
-	for (auto t : tiles) {
-		t->getComponent<TileComponent>().destRect.x += -(pVel.x * pSpeed);
-		t->getComponent<TileComponent>().destRect.y += -(pVel.y * pSpeed);
+	camera.x = player.getComponent<TransformComponent>().position.x - 600;
+	camera.y = player.getComponent<TransformComponent>().position.y - 360;
+	//funkcja
+	if (camera.x < 0) {
+		camera.x = 0;
+	}
+	if (camera.y < 0) {
+		camera.y = 0;
+	}
+	if (camera.x > camera.w) {
+		camera.x = camera.w;
+	}
+	if (camera.y > camera.h) {
+		camera.y = camera.h;
 	}
 	
 	//for (auto cc : colliders) {

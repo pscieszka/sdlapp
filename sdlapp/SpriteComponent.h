@@ -67,8 +67,11 @@ public:
 		if (animated) {
 			srcRect.x = srcRect.w * static_cast<int>((SDL_GetTicks() / speed) % frames);
 		}
-		destRect.x = static_cast<int>(transform->position.x);
-		destRect.y = static_cast<int>(transform->position.y);
+		destRect.x = static_cast<int>(transform->position.x) - game::camera.x;
+		destRect.y = static_cast<int>(transform->position.y) - game::camera.y;
+		destRect.w = transform->width * transform->scale;
+		destRect.h = transform->height * transform->scale;
+
 	}
 	void draw() override {
 		textureManager::draw(texture, srcRect, destRect);
